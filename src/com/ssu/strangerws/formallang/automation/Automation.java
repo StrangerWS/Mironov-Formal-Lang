@@ -1,9 +1,10 @@
-package com.ssu.strangerws.formallang;
+package com.ssu.strangerws.formallang.automation;
 
 import javafx.util.Pair;
 
 import java.io.*;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -42,8 +43,26 @@ public class Automation {
     public Automation(Set<String> startStates, Set<String> endStates, Map<String, Pair<String, String>> transitions) {
         boolean flag = true;
 
-        for (Map.Entry entry : transitions.entrySet()){
-            for
+        for (String s : startStates) {
+            for (Map.Entry entry : transitions.entrySet()) {
+                if (!entry.getKey().equals(s)) {
+                    flag = false;
+                    System.err.println("INVALID START STATES");
+                    break;
+                }
+            }
+        }
+
+        if (flag) {
+            for (String s : endStates) {
+                for (Map.Entry entry : transitions.entrySet()) {
+                    if (!entry.getKey().equals(s)) {
+                        flag = false;
+                        System.err.println("INVALID END STATES");
+                        break;
+                    }
+                }
+            }
         }
 
         if (flag) {
@@ -73,5 +92,21 @@ public class Automation {
         return transitions;
     }
 
-    public boolean checkValidity
+    private boolean checkInputValidity(List<String> input){
+        boolean flag = true;
+
+        for (String s : startStates) {
+            for (Map.Entry entry : transitions.entrySet()) {
+                if (!entry.getKey().equals(s)) {
+                    flag = false;
+                    System.err.println("INVALID INPUT");
+                    break;
+                }
+            }
+        }
+
+        return flag;
+    }
+
+    
 }
