@@ -30,7 +30,6 @@ public class Automation {
         return state;
     }
 
-
     public Set<String> getStartStates() {
         return startStates;
     }
@@ -55,5 +54,30 @@ public class Automation {
         this.transitions = transitions;
     }
 
+    private boolean checkEnd(){
+        return endStates.contains(state);
+    }
+    private boolean doTransition(String command){
+        Map<String, String> transition = transitions.get(command);
+        if (transition.containsKey(state)){
+            state = transition.get(state);
+            return true;
+        }
+        else return false;
+    }
 
+    public boolean execute(String expression){
+        for (int i = 0; i < expression.length(); i++) {
+            doTransition(Character.toString(expression.charAt(i)));
+            if (checkEnd()) return true;
+        }
+        return false;
+    }
+
+    public Automation(Map<String, Map<String, String>> transitions, Set<String> endStates, Set<String> startStates, Set<String> alphabet) {
+        this.transitions = transitions;
+        this.endStates = endStates;
+        this.startStates = startStates;
+        this.alphabet = alphabet;
+    }
 }

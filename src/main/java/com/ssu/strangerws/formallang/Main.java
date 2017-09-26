@@ -1,8 +1,14 @@
 package com.ssu.strangerws.formallang;
 
+import com.ssu.strangerws.formallang.automation.Automation;
 import com.ssu.strangerws.formallang.automation.AutomationReader;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by DobryninAM on 05.09.2017.
@@ -10,5 +16,6 @@ import org.apache.commons.io.FilenameUtils;
 public class Main {
     public static void main(String[] args) {
         AutomationReader reader = new AutomationReader("C:\\Users\\DobryninAM\\IdeaProjects\\Mironov-Formal-Lang\\src\\main\\resources\\json\\automation.json");
+        reader.readAlphabet();
     }
 }

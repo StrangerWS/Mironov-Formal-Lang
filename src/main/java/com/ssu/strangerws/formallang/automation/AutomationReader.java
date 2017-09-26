@@ -15,15 +15,14 @@ public class AutomationReader {
 
     public AutomationReader(String filePath) {
         try {
-            JSONObject object = new JSONObject(FileUtils.readFileToString(new File(filePath), "UTF-8"));
-            automation = object;
+            automation = new JSONObject(FileUtils.readFileToString(new File(filePath), "UTF-8"));
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
-//    public Set<String> readAlphabet(){
-//
-//    }
+    public Set<String> readAlphabet(){
+        automation.get("transitions");
+        return null;
+    }
 }
