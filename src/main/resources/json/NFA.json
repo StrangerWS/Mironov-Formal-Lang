@@ -1,0 +1,24 @@
+{
+  "alphabet": [
+
+  ],
+  "startStates": [
+
+  ],
+  "endState": [
+
+  ],
+  "transitions": {
+    "columns": [
+
+    ],
+    "rows": [
+      {
+        "rowName": "",
+        "transitions": [
+          []
+        ]
+      }
+    ]
+  }
+}
