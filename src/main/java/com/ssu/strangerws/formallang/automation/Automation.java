@@ -1,7 +1,8 @@
 package com.ssu.strangerws.formallang.automation;
 
-import com.ssu.strangerws.formallang.automation.reader.api.AutomationReader;
+import javafx.util.Pair;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -13,28 +14,16 @@ public abstract class Automation<T> {
     protected List<String> alphabet;
     protected T startStates;
     protected List<String> endStates;
-    protected Map<String, Map<String, T>> transitions;
+    protected Map<String, Pair<String, T>> transitions;
     protected T state;
-    protected AutomationReader<T> reader;
 
     public T getState() {
         return state;
-    }
-
-    public Automation(AutomationReader<T> reader) {
-        this.reader = reader;
-    }
-
-    public void init() {
-        alphabet = reader.readAlphabet();
-        transitions = reader.readTransitions();
-        startStates = reader.readStartStates();
-        endStates = reader.readEndStates();
-        state = startStates;
     }
 
     public abstract boolean changeState(String state);
 
     public abstract boolean checkEnd();
 
+    public abstract void init(String fileName) throws IOException;
 }
