@@ -6,10 +6,7 @@ import javafx.util.Pair;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.function.IntFunction;
 
 /**
@@ -21,13 +18,18 @@ public class DFA extends Automation<String> {
     public boolean changeState(String transition)  {
         if (!alphabet.contains(transition) || transitions.get(transition) == null) return false;
 
-        System.out.print(this.state);
+        //System.out.print(this.state);
 
         String newState = transitions.get(transition).getValue();
+
+        Iterator<Map.Entry<String, Pair<String, String>>> itr = transitions.entrySet().iterator();
+        while (itr.hasNext())
+            System.out.println(itr.next());
+
         if (newState == null) return false;
         this.state = newState;
 
-        System.out.println( " -> " + this.state);
+        //System.out.println( " -> " + this.state);
 
         return true;
     }
