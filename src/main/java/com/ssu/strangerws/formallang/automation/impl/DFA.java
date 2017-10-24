@@ -18,13 +18,17 @@ import java.util.function.IntFunction;
 public class DFA extends Automation<String> {
 
     @Override
-    public boolean changeState(String state)  {
-        if (!alphabet.contains(state) || transitions.get(state) == null) return false;
+    public boolean changeState(String transition)  {
+        if (!alphabet.contains(transition) || transitions.get(transition) == null) return false;
 
-        String newState = transitions.get(state).getValue();
+        System.out.print(this.state);
+
+        String newState = transitions.get(transition).getValue();
         if (newState == null) return false;
-
         this.state = newState;
+
+        System.out.println( " -> " + this.state);
+
         return true;
     }
 
@@ -46,6 +50,8 @@ public class DFA extends Automation<String> {
             Pair<String, String> tmp = new Pair<>(arr[1], arr[2]);
             transitions.put(arr[0], tmp);
         }
+
+        state = startStates;
     }
 
 }

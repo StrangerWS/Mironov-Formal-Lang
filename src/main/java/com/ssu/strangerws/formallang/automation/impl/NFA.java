@@ -16,13 +16,13 @@ import java.util.Set;
  */
 public class NFA extends Automation<Set<String>> {
     @Override
-    public boolean changeState(String state) {
-        if (!alphabet.contains(state) || this.state.size() == 0) return false;
+    public boolean changeState(String transition) {
+        if (!alphabet.contains(transition) || this.state.size() == 0) return false;
 
         Set<String> nextStates = new HashSet<>();
 
         for (String s : this.state) {
-            Set<String> nextState = transitions.get(this.state).getValue();
+            Set<String> nextState = transitions.get(transition).getValue();
             if (!nextState.isEmpty()) {
                 nextStates.addAll(nextState);
             }
@@ -56,5 +56,7 @@ public class NFA extends Automation<Set<String>> {
             Pair<String, Set<String>> tmp = new Pair<>(arr[1], tmpSet);
             transitions.put(arr[0], tmp);
         }
+
+        state = startStates;
     }
 }
