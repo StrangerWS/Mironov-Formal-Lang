@@ -19,9 +19,9 @@ public class DFA extends Automation<String> {
 
     @Override
     public boolean changeState(String state)  {
-        if (!alphabet.contains(state) || transitions.get(this.state) == null) return false;
+        if (!alphabet.contains(state) || transitions.get(state) == null) return false;
 
-        String newState = transitions.get(this.state).getValue();
+        String newState = transitions.get(state).getValue();
         if (newState == null) return false;
 
         this.state = newState;

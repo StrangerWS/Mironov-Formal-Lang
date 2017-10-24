@@ -8,7 +8,7 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
         Automation automation = new DFA();
-        String sentence = "abbca";
+        String sentence = "bj";
 
         try {
             automation.init("C:\\Users\\DobryninAM\\IdeaProjects\\Mironov-Formal-Lang\\src\\main\\resources\\txt\\automation.txt");
