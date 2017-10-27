@@ -1,5 +1,6 @@
 package com.ssu.strangerws.formallang.automation;
 
+import com.ssu.strangerws.formallang.utils.Transition;
 import javafx.util.Pair;
 
 import java.io.IOException;
@@ -16,7 +17,7 @@ public abstract class Automation<T> {
     protected List<String> alphabet = new ArrayList<>();
     protected T startStates;
     protected List<String> endStates = new ArrayList<>();
-    protected Map<String, Pair<String, T>> transitions = new HashMap<>();
+    protected List<Transition<String, String, T>> transitions = new ArrayList<>();
     protected T state;
 
     public T getState() {

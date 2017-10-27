@@ -14,7 +14,7 @@ public class Main {
         String sentence1 = "vggvvggvgv";
 
         try {
-            automation.init("C:\\Users\\DobryninAM\\IdeaProjects\\Mironov-Formal-Lang\\src\\main\\resources\\txt\\automation.txt");
+            automation.init("C:\\Users\\StrangerWS\\IdeaProjects\\Mironov-Formal-Lang\\src\\main\\resources\\txt\\automation.txt");
 
             for (int i = 0; i < sentence.length(); i++) {
                 if (!automation.changeState(String.valueOf(sentence.charAt(i)))) {
@@ -28,10 +28,10 @@ public class Main {
                 System.out.println("False");
             }
 
-            automation1.init("C:\\Users\\DobryninAM\\IdeaProjects\\Mironov-Formal-Lang\\src\\main\\resources\\txt\\nfa.txt");
+            automation1.init("C:\\Users\\StrangerWS\\IdeaProjects\\Mironov-Formal-Lang\\src\\main\\resources\\txt\\nfa.txt");
 
-            for (int i = 0; i < sentence.length(); i++) {
-                if (!automation1.changeState(String.valueOf(sentence.charAt(i)))) {
+            for (int i = 0; i < sentence1.length(); i++) {
+                if (!automation1.changeState(String.valueOf(sentence1.charAt(i)))) {
                     System.out.println("Invalid symbol!");
                 }
             }
