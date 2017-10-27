@@ -8,13 +8,13 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        Automation automation = new DFA();
-        Automation automation1 = new NFA();
+        Automation automation = new DFA("C:\\Users\\StrangerWS\\IdeaProjects\\Mironov-Formal-Lang\\src\\main\\resources\\txt\\automation.txt");
+        Automation automation1 = new NFA("C:\\Users\\StrangerWS\\IdeaProjects\\Mironov-Formal-Lang\\src\\main\\resources\\txt\\nfa.txt");
         String sentence = "bj";
         String sentence1 = "vggvvggvgv";
 
         try {
-            automation.init("C:\\Users\\StrangerWS\\IdeaProjects\\Mironov-Formal-Lang\\src\\main\\resources\\txt\\automation.txt");
+            automation.init();
 
             for (int i = 0; i < sentence.length(); i++) {
                 if (!automation.changeState(String.valueOf(sentence.charAt(i)))) {
@@ -28,7 +28,7 @@ public class Main {
                 System.out.println("False");
             }
 
-            automation1.init("C:\\Users\\StrangerWS\\IdeaProjects\\Mironov-Formal-Lang\\src\\main\\resources\\txt\\nfa.txt");
+            automation1.init();
 
             for (int i = 0; i < sentence1.length(); i++) {
                 if (!automation1.changeState(String.valueOf(sentence1.charAt(i)))) {

@@ -15,6 +15,10 @@ import java.util.function.IntFunction;
  */
 public class DFA extends Automation<String> {
 
+    public DFA(String fileName) {
+        super(fileName);
+    }
+
     private Transition<String, String, String> getTransitionByName(String name) {
             for (Transition<String, String, String> t: transitions) {
                 if (t.getTransition().equals(name) && t.getCurrent().equals(state)) {
@@ -38,7 +42,7 @@ public class DFA extends Automation<String> {
     }
 
     @Override
-    public void init(String fileName) throws IOException {
+    public void init() throws IOException {
         List<String> lines = new ArrayList<>();
         Files.lines(Paths.get(fileName)).forEach(lines::add);
         startStates = lines.get(0);

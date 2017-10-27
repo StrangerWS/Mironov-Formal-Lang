@@ -2,11 +2,7 @@ package com.ssu.strangerws.formallang.automation.impl;
 
 import com.ssu.strangerws.formallang.automation.Automation;
 import com.ssu.strangerws.formallang.utils.Transition;
-import javafx.util.Pair;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -16,6 +12,11 @@ import java.util.*;
  * Created by DobryninAM on 03.10.2017.
  */
 public class NFA extends Automation<Set<String>> {
+
+    public NFA(String fileName) {
+        super(fileName);
+    }
+
     private Transition<String, String, Set<String>> getTransitionByNameAndState(String name, String state) {
         for (Transition<String, String, Set<String>> t : transitions) {
             if (t.getTransition().equals(name) && this.state.contains(state)) {
@@ -33,7 +34,7 @@ public class NFA extends Automation<Set<String>> {
         Set<String> nextStates = new HashSet<>();
 
         for (String s : state) {
-            Transition <String, String, Set<String>> tmp = getTransitionByNameAndState(transition, s);
+            Transition<String, String, Set<String>> tmp = getTransitionByNameAndState(transition, s);
             if (tmp != null) {
                 nextStates.addAll(tmp.getNext());
             }
@@ -52,7 +53,7 @@ public class NFA extends Automation<Set<String>> {
     }
 
     @Override
-    public void init(String fileName) throws IOException {
+    public void init() throws IOException {
         List<String> lines = new ArrayList<>();
         Files.lines(Paths.get(fileName)).forEach(lines::add);
         startStates = new HashSet<>();
