@@ -5,4 +5,15 @@ c e g
 + f h
 - a b
 - f h
-\\d
+\\d a c
+\\d b c
+\\d c c
+\\d d e
+\\d e e
+\\d f g
+\\d g g
+\\d h g
+e c f
+e e f
+E c f
+E e f
