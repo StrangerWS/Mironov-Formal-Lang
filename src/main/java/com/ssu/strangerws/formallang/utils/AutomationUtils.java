@@ -7,21 +7,17 @@ import java.io.IOException;
 
 public class AutomationUtils {
 
-    public static void testAutomation(Automation automation, String sentence) throws IOException {
+    public static boolean testAutomation(Automation automation, String sentence) throws IOException {
         automation.init();
 
         for (int i = 0; i < sentence.length(); i++) {
             if (!automation.changeState(String.valueOf(sentence.charAt(i)))) {
                 System.out.println("Invalid symbol: " + sentence.charAt(i));
-                return;
+                return false;
             }
         }
 
-        if (automation.checkEnd()) {
-            System.out.println("True");
-        } else {
-            System.out.println("False");
-        }
+        return automation.checkEnd();
     }
 
     public Pair<Boolean, Integer> findMaxLengthExpression(Automation automation, String expression, int k) throws IOException {
