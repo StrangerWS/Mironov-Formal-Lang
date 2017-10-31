@@ -6,7 +6,24 @@ import javafx.util.Pair;
 import java.io.IOException;
 
 public class AutomationUtils {
-    private Pair<Boolean, Integer> findMaxLengthExpression(Automation automation, String expression, int k) throws IOException {
+
+    public static void testAutomation(Automation automation, String sentence) throws IOException {
+        automation.init();
+
+        for (int i = 0; i < sentence.length(); i++) {
+            if (!automation.changeState(String.valueOf(sentence.charAt(i)))) {
+                System.out.println("Invalid symbol!");
+            }
+        }
+
+        if (automation.checkEnd()) {
+            System.out.println("True");
+        } else {
+            System.out.println("False");
+        }
+    }
+
+    public Pair<Boolean, Integer> findMaxLengthExpression(Automation automation, String expression, int k) throws IOException {
         boolean over = false;
         int globalCnt = 0;
         int localCnt = 0;
