@@ -19,7 +19,7 @@ public class NFA extends Automation<Set<String>> {
 
     private Transition<String, String, Set<String>> getTransitionByNameAndState(String name, String state) {
         for (Transition<String, String, Set<String>> t : transitions) {
-            if (t.getTransition().equals(name) && this.state.contains(state)) {
+            if (t.getTransition().equals(name) && t.getCurrent().equals(state)) {
                 return t;
             }
         }
@@ -46,6 +46,7 @@ public class NFA extends Automation<Set<String>> {
 
     @Override
     public boolean checkEnd() {
+        System.out.println(state.toString());
         for (String nextState : state) {
             if (endStates.contains(nextState)) return true;
         }

@@ -12,7 +12,8 @@ public class AutomationUtils {
 
         for (int i = 0; i < sentence.length(); i++) {
             if (!automation.changeState(String.valueOf(sentence.charAt(i)))) {
-                System.out.println("Invalid symbol!");
+                System.out.println("Invalid symbol: " + sentence.charAt(i));
+                return;
             }
         }
 
@@ -33,7 +34,7 @@ public class AutomationUtils {
         for (int i = k; i < expression.length() || !automation.changeState(Character.toString(expression.charAt(i))); i++) {
             localCnt++;
             over = automation.checkEnd();
-            if (over){
+            if (over) {
                 globalCnt += localCnt;
                 localCnt = 0;
             }
