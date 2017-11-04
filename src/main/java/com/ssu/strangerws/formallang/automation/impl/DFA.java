@@ -52,7 +52,6 @@ public class DFA extends Automation<String> {
             String[] arr = lines.get(i).split(" ");
             transitions.add(new Transition<String, String, String>(arr[0], arr[1], arr[2]));
         }
-
         state = startStates;
     }
 

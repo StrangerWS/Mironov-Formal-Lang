@@ -14,13 +14,13 @@ public class Main {
         Automation automation2 = new DFA("src\\main\\resources\\txt\\real.txt");
         String sentence = "be";
         String sentence1 = "vggvvggvg";
-        String sentence2 = "-13.3e";
+        String sentence2 = "-13.3ee,rlltpafe.043e+12";
 
         try {
             System.out.println(AutomationUtils.testAutomation(automation, sentence));
             System.out.println(AutomationUtils.testAutomation(automation1, sentence1));
-            System.out.println(AutomationUtils.testAutomation(automation2, sentence2));
-
+            System.out.println(AutomationUtils.testAutomation(automation2, AutomationUtils.parseToReal(sentence2)));
+            System.out.println(AutomationUtils.findAllExpressions(automation2, AutomationUtils.parseToReal(sentence2)).toString());
         } catch (IOException e) {
             e.printStackTrace();
         }

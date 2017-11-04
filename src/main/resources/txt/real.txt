@@ -1,18 +1,21 @@
 a
 c e g
-+ - \\d . e E
++ - \d . e E
 + a b
 + f h
 - a b
 - f h
-\\d a c
-\\d b c
-\\d c c
-\\d d e
-\\d e e
-\\d f g
-\\d g g
-\\d h g
+\d a c
+\d b c
+\d c c
+\d d e
+\d e e
+\d f g
+\d g g
+\d h g
+. a d
+. b d
+. c e
 e c f
 e e f
 E c f

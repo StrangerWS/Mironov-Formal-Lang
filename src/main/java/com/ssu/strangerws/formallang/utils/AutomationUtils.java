@@ -4,6 +4,8 @@ import com.ssu.strangerws.formallang.automation.Automation;
 import javafx.util.Pair;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AutomationUtils {
 
@@ -11,7 +13,14 @@ public class AutomationUtils {
         automation.init();
 
         for (int i = 0; i < sentence.length(); i++) {
-            if (!automation.changeState(String.valueOf(sentence.charAt(i)))) {
+            String signal;
+            if (sentence.charAt(i) == '\\') {
+                i++;
+                signal = "\\" + sentence.charAt(i);
+            } else {
+                signal = String.valueOf(sentence.charAt(i));
+            }
+            if (!automation.changeState(signal)) {
                 System.out.println("Invalid symbol: " + sentence.charAt(i));
                 return false;
             }
@@ -20,22 +29,55 @@ public class AutomationUtils {
         return automation.checkEnd();
     }
 
-    public Pair<Boolean, Integer> findMaxLengthExpression(Automation automation, String expression, int k) throws IOException {
+    public static String parseToReal(String sentence) {
+        return sentence.replaceAll("\\d", "\\\\d");
+    }
+
+    public static Pair<Boolean, Integer> findMaxLengthExpression(Automation automation, String expression, int k) throws IOException {
         boolean over = false;
         int globalCnt = 0;
         int localCnt = 0;
 
         automation.init();
 
-        for (int i = k; i < expression.length() || !automation.changeState(Character.toString(expression.charAt(i))); i++) {
+        for (int i = k; i < expression.length(); i++) {
+            String signal;
+            if (expression.charAt(i) == '\\') {
+                i++;
+                signal = "\\" + expression.charAt(i);
+            } else {
+                signal = String.valueOf(expression.charAt(i));
+            }
             localCnt++;
-            over = automation.checkEnd();
-            if (over) {
-                globalCnt += localCnt;
+
+            if (automation.checkEnd()){
+                globalCnt+=localCnt;
                 localCnt = 0;
+                over = true;
+            }
+            if (!automation.changeState(signal)) {
+                return new Pair<>(over, globalCnt);
             }
         }
 
         return new Pair<>(over, globalCnt);
+    }
+
+    public static List<String> findAllExpressions(Automation automation, String expression) throws IOException {
+        List<String> numbers = new ArrayList<>();
+        int i = 0;
+        int k;
+
+        while (i < expression.length()) {
+            Pair<Boolean, Integer> tmp = findMaxLengthExpression(automation, expression, i);
+            if (!tmp.getKey()) {
+                i++;
+            } else {
+                numbers.add(expression.substring(i, i + tmp.getValue()));
+                i += tmp.getValue();
+            }
+        }
+
+        return numbers;
     }
 }
