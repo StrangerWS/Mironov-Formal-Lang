@@ -14,9 +14,9 @@ public class AutomationUtils {
 
         for (int i = 0; i < sentence.length(); i++) {
             String signal;
-            if (sentence.charAt(i) == '\\') {
+            if (Character.isDigit(sentence.charAt(i))) {
                 i++;
-                signal = "\\" + sentence.charAt(i);
+                signal = "\\d";
             } else {
                 signal = String.valueOf(sentence.charAt(i));
             }
@@ -29,10 +29,6 @@ public class AutomationUtils {
         return automation.checkEnd();
     }
 
-    public static String parseToReal(String sentence) {
-        return sentence.replaceAll("\\d", "\\\\d");
-    }
-
     public static Pair<Boolean, Integer> findMaxLengthExpression(Automation automation, String expression, int k) throws IOException {
         boolean over = false;
         int globalCnt = 0;
@@ -42,9 +38,9 @@ public class AutomationUtils {
 
         for (int i = k; i < expression.length(); i++) {
             String signal;
-            if (expression.charAt(i) == '\\') {
+            if (Character.isDigit(expression.charAt(i))) {
                 i++;
-                signal = "\\" + expression.charAt(i);
+                signal = "\\d";
             } else {
                 signal = String.valueOf(expression.charAt(i));
             }

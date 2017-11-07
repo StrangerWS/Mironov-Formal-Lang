@@ -19,8 +19,8 @@ public class Main {
         try {
             System.out.println(AutomationUtils.testAutomation(automation, sentence));
             System.out.println(AutomationUtils.testAutomation(automation1, sentence1));
-            System.out.println(AutomationUtils.testAutomation(automation2, AutomationUtils.parseToReal(sentence2)));
-            System.out.println(AutomationUtils.findAllExpressions(automation2, AutomationUtils.parseToReal(sentence2)).toString());
+            System.out.println(AutomationUtils.testAutomation(automation2, sentence2));
+            System.out.println(AutomationUtils.findAllExpressions(automation2, sentence2));
         } catch (IOException e) {
             e.printStackTrace();
         }
