@@ -15,7 +15,6 @@ public class AutomationUtils {
         for (int i = 0; i < sentence.length(); i++) {
             String signal;
             if (Character.isDigit(sentence.charAt(i))) {
-                i++;
                 signal = "\\d";
             } else {
                 signal = String.valueOf(sentence.charAt(i));
@@ -39,20 +38,20 @@ public class AutomationUtils {
         for (int i = k; i < expression.length(); i++) {
             String signal;
             if (Character.isDigit(expression.charAt(i))) {
-                i++;
                 signal = "\\d";
             } else {
                 signal = String.valueOf(expression.charAt(i));
             }
             localCnt++;
 
-            if (automation.checkEnd()){
-                globalCnt+=localCnt;
-                localCnt = 0;
-                over = true;
-            }
             if (!automation.changeState(signal)) {
                 return new Pair<>(over, globalCnt);
+            }
+
+            if (automation.checkEnd()) {
+                globalCnt += localCnt;
+                localCnt = 0;
+                over = true;
             }
         }
 
