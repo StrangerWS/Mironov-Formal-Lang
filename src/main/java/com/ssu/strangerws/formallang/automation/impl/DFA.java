@@ -17,8 +17,8 @@ import java.util.regex.Pattern;
  */
 public class DFA extends Automation<String> {
 
-    public DFA(String fileName) {
-        super(fileName);
+    public DFA(String fileName, int priority) {
+        super(fileName, priority);
     }
 
     private Transition<String, String, String> getTransitionByName(String name) {

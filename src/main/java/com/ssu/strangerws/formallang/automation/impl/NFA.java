@@ -13,8 +13,8 @@ import java.util.*;
  */
 public class NFA extends Automation<Set<String>> {
 
-    public NFA(String fileName) {
-        super(fileName);
+    public NFA(String fileName, int priority) {
+        super(fileName, priority);
     }
 
     private Transition<String, String, Set<String>> getTransitionByNameAndState(String name, String state) {

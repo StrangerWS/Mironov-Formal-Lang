@@ -17,9 +17,11 @@ public abstract class Automation<T> {
     protected List<Transition<String, String, T>> transitions = new ArrayList<>();
     protected T state;
     protected String fileName;
+    protected int priority;
 
-    public Automation(String fileName) {
+    public Automation(String fileName, int priority) {
         this.fileName = fileName;
+        this.priority = priority;
     }
 
     public T getState() {

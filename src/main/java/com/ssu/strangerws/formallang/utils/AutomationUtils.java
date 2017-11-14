@@ -16,6 +16,8 @@ public class AutomationUtils {
             String signal;
             if (Character.isDigit(sentence.charAt(i))) {
                 signal = "\\d";
+            } else if (Character.isLetter(sentence.charAt(i))) {
+                signal = "\\w";
             } else {
                 signal = String.valueOf(sentence.charAt(i));
             }
@@ -39,6 +41,8 @@ public class AutomationUtils {
             String signal;
             if (Character.isDigit(expression.charAt(i))) {
                 signal = "\\d";
+            } else if (Character.isLetter(expression.charAt(i))) {
+                signal = "\\w";
             } else {
                 signal = String.valueOf(expression.charAt(i));
             }
