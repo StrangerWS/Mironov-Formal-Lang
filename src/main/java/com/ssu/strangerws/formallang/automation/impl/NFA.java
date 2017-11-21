@@ -2,6 +2,7 @@ package com.ssu.strangerws.formallang.automation.impl;
 
 import com.ssu.strangerws.formallang.automation.Automation;
 import com.ssu.strangerws.formallang.utils.Transition;
+import com.ssu.strangerws.formallang.utils.Type;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -16,6 +17,7 @@ public class NFA extends Automation<Set<String>> {
     public NFA(String fileName, int priority) {
         super(fileName, priority);
     }
+    public NFA(String fileName, int priority, Type type) {super(fileName, priority, type);}
 
     private Transition<String, String, Set<String>> getTransitionByNameAndState(String name, String state) {
         for (Transition<String, String, Set<String>> t : transitions) {

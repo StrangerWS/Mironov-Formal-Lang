@@ -2,6 +2,7 @@ package com.ssu.strangerws.formallang.automation.impl;
 
 import com.ssu.strangerws.formallang.automation.Automation;
 import com.ssu.strangerws.formallang.utils.Transition;
+import com.ssu.strangerws.formallang.utils.Type;
 import javafx.util.Pair;
 
 import java.io.*;
@@ -20,6 +21,7 @@ public class DFA extends Automation<String> {
     public DFA(String fileName, int priority) {
         super(fileName, priority);
     }
+    public DFA(String fileName, int priority, Type type) {super(fileName, priority, type);}
 
     private Transition<String, String, String> getTransitionByName(String name) {
             for (Transition<String, String, String> t: transitions) {
