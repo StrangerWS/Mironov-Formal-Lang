@@ -19,17 +19,41 @@ public abstract class Automation<T> {
     protected T state;
     protected String fileName;
     protected int priority;
-    protected Type type;
+    protected String name;
+
+    public String[] getMasks() {
+        return masks;
+    }
+
+    protected String[] masks;
 
     public Automation(String fileName, int priority) {
         this.fileName = fileName;
         this.priority = priority;
-        this.type = Type.undefined;
+        this.masks = new String[0];
     }
-    public Automation(String fileName, int priority, Type type) {
+    public Automation(String fileName, int priority, String[] masks) {
         this.fileName = fileName;
         this.priority = priority;
-        this.type = type;
+        this.masks = masks;
+    }
+
+    public Automation(String fileName, int priority, Type type){
+        this.fileName = fileName;
+        this.priority = priority;
+        this.masks = type.masks;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public T getState() {

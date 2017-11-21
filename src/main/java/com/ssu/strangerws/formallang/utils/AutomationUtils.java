@@ -6,23 +6,30 @@ import javafx.util.Pair;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AutomationUtils {
 
-    public static boolean testAutomation(Automation automation, String sentence) throws IOException {
+    public static boolean testAutomation(Automation automation, String expression) throws IOException {
         automation.init();
 
-        for (int i = 0; i < sentence.length(); i++) {
-            String signal;
-            if (Character.isDigit(sentence.charAt(i))) {
-                signal = "\\d";
-            } else if (Character.isLetter(sentence.charAt(i))) {
-                signal = "\\w";
-            } else {
-                signal = String.valueOf(sentence.charAt(i));
+        for (int i = 0; i < expression.length(); i++) {
+            String signal = null;
+            if (automation.getMasks() != null) {
+                String[] masks = automation.getMasks();
+                for (int j = 0; j < masks.length; j++) {
+                    Matcher m = Pattern.compile(automation.getMasks()[j]).matcher(String.valueOf(expression.charAt(i)));
+                    if (m.matches()) {
+                        signal = masks[j];
+                    }
+                }
+            }
+            if (signal == null) {
+                signal = String.valueOf(expression.charAt(i));
             }
             if (!automation.changeState(signal)) {
-                System.out.println("Invalid symbol: " + sentence.charAt(i));
+                System.out.println("Invalid symbol: " + expression.charAt(i));
                 return false;
             }
         }
@@ -38,12 +45,17 @@ public class AutomationUtils {
         automation.init();
 
         for (int i = k; i < expression.length(); i++) {
-            String signal;
-            if (Character.isDigit(expression.charAt(i))) {
-                signal = "\\d";
-            } else if (Character.isLetter(expression.charAt(i))) {
-                signal = "\\w";
-            } else {
+            String signal = null;
+            if (automation.getMasks() != null) {
+                String[] masks = automation.getMasks();
+                for (int j = 0; j < masks.length; j++) {
+                    Matcher m = Pattern.compile(automation.getMasks()[j]).matcher(String.valueOf(expression.charAt(i)));
+                    if (m.matches()) {
+                        signal = masks[j];
+                    }
+                }
+            }
+            if (signal == null) {
                 signal = String.valueOf(expression.charAt(i));
             }
             localCnt++;
@@ -65,7 +77,6 @@ public class AutomationUtils {
     public static List<String> findAllExpressions(Automation automation, String expression) throws IOException {
         List<String> numbers = new ArrayList<>();
         int i = 0;
-        int k;
 
         while (i < expression.length()) {
             Pair<Boolean, Integer> tmp = findMaxLengthExpression(automation, expression, i);
@@ -78,5 +89,35 @@ public class AutomationUtils {
         }
 
         return numbers;
+    }
+
+    public static List<Pair<String, String>> analyzeCode(Automation[] automations, String expression) throws IOException {
+        List<Pair<String, String>> lexemes = new ArrayList<>();
+        int i = 0;
+        int maxLength = 0;
+        int automationIndex = -1;
+
+        while (i < expression.length()) {
+            for (int j = 0; j < automations.length; j++) {
+                Pair<Boolean, Integer> tmp = findMaxLengthExpression(automations[j], expression, i);
+                if (maxLength < tmp.getValue()) {
+                    if (automationIndex != -1 && automations[j].getPriority() > automations[automationIndex].getPriority()){
+                        maxLength = tmp.getValue();
+                        automationIndex = j;
+                    } else if (automationIndex == -1){
+                        maxLength = tmp.getValue();
+                        automationIndex = j;
+                    }
+                }
+            }
+
+            lexemes.add(new Pair<String, String>(automations[automationIndex].getName(), expression.substring(i, i + maxLength)));
+            i += maxLength;
+
+            maxLength = 0;
+            automationIndex = -1;
+        }
+
+        return lexemes;
     }
 }

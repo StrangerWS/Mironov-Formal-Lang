@@ -7,7 +7,6 @@ public enum Type {
     openBracket(null),
     closeBracket(null),
     space(new String[]{"\\s"}),
-    undefined(null),
     keyWord(null);
 
     public String[] masks;
