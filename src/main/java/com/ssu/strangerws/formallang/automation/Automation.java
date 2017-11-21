@@ -27,21 +27,24 @@ public abstract class Automation<T> {
 
     protected String[] masks;
 
-    public Automation(String fileName, int priority) {
+    public Automation(String fileName, int priority, String name) {
         this.fileName = fileName;
         this.priority = priority;
         this.masks = new String[0];
+        this.name = name;
     }
-    public Automation(String fileName, int priority, String[] masks) {
+    public Automation(String fileName, int priority, String[] masks, String name) {
         this.fileName = fileName;
         this.priority = priority;
         this.masks = masks;
+        this.name = name;
     }
 
     public Automation(String fileName, int priority, Type type){
         this.fileName = fileName;
         this.priority = priority;
         this.masks = type.masks;
+        this.name = type.name;
     }
 
     public String getName() {

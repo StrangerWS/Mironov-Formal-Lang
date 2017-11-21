@@ -18,10 +18,10 @@ import java.util.regex.Pattern;
  */
 public class DFA extends Automation<String> {
 
-    public DFA(String fileName, int priority) {
-        super(fileName, priority);
+    public DFA(String fileName, int priority, String name) {
+        super(fileName, priority, name);
     }
-    public DFA(String fileName, int priority, String[] masks) {super(fileName, priority, masks);}
+    public DFA(String fileName, int priority, String[] masks, String name) {super(fileName, priority, masks, name);}
     public DFA(String fileName, int priority, Type type) {super(fileName, priority, type);}
 
     private Transition<String, String, String> getTransitionByName(String name) {

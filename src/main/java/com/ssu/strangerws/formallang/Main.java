@@ -19,17 +19,8 @@ public class Main {
         Automation space = new DFA("src\\main\\resources\\txt\\space.txt", 6, Type.space);
         Automation keyWord = new DFA("src\\main\\resources\\txt\\keyWord.txt", 7, Type.keyWord);
 
-        identifier.setName("ID");
-        real.setName("REAL");
-        integer.setName("INT");
-        closeBracket.setName("CB");
-        openBracket.setName("OB");
-        space.setName("SP");
-        keyWord.setName("KW");
-
-        String sentence2 = "define -13.3e-7terl.ltp+5.3 (lambda (egaf) - 0).dsere 0.43";
-
         try {
+            String sentence2 = AutomationUtils.readFile("src\\main\\resources\\code.txt");
             System.out.println(AutomationUtils.analyzeCode(new Automation[]{identifier,
                                                                             real,
                                                                             integer,

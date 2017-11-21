@@ -14,11 +14,11 @@ import java.util.*;
  */
 public class NFA extends Automation<Set<String>> {
 
-    public NFA(String fileName, int priority) {
-        super(fileName, priority);
+    public NFA(String fileName, int priority, String name) {
+        super(fileName, priority, name);
     }
-    public NFA(String fileName, int priority, String[] masks) {super(fileName, priority, masks);}
-    public NFA(String fileName, int priority, Type type) {super(fileName, priority, type);}
+    public NFA(String fileName, int priority, String[] masks, String name) {super(fileName, priority, masks, name);}
+    public NFA(String fileName, int priority, Type type, String name) {super(fileName, priority, type);}
 
     private Transition<String, String, Set<String>> getTransitionByNameAndState(String name, String state) {
         for (Transition<String, String, Set<String>> t : transitions) {
