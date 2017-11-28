@@ -27,6 +27,9 @@ public abstract class Automation<T> {
 
     protected String[] masks;
 
+    public Automation() {
+    }
+
     public Automation(String fileName, int priority, String name) {
         this.fileName = fileName;
         this.priority = priority;
@@ -45,6 +48,58 @@ public abstract class Automation<T> {
         this.priority = priority;
         this.masks = type.masks;
         this.name = type.name;
+    }
+
+    public List<String> getAlphabet() {
+        return alphabet;
+    }
+
+    public void setAlphabet(List<String> alphabet) {
+        this.alphabet = alphabet;
+    }
+
+    public T getStartStates() {
+        return startStates;
+    }
+
+    public void setStartStates(T startStates) {
+        this.startStates = startStates;
+    }
+
+    public List<String> getEndStates() {
+        return endStates;
+    }
+
+    public void setEndStates(List<String> endStates) {
+        this.endStates = endStates;
+    }
+
+    public List<Transition<String, String, T>> getTransitions() {
+        return transitions;
+    }
+
+    public void setTransitions(List<Transition<String, String, T>> transitions) {
+        this.transitions = transitions;
+    }
+
+    public void setState(T state) {
+        this.state = state;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+
+    public void setMasks(String[] masks) {
+        this.masks = masks;
     }
 
     public String getName() {

@@ -18,6 +18,8 @@ import java.util.regex.Pattern;
  */
 public class DFA extends Automation<String> {
 
+    public DFA() {
+    }
     public DFA(String fileName, int priority, String name) {
         super(fileName, priority, name);
     }
