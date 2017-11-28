@@ -22,6 +22,7 @@ public class NFA extends Automation<Set<String>> {
     public NFA(String fileName, int priority, String[] masks, String name) {super(fileName, priority, masks, name);}
     public NFA(String fileName, int priority, Type type, String name) {super(fileName, priority, type);}
 
+
     public Transition<String, String, Set<String>> getTransitionByNameAndState(String name, String state) {
         for (Transition<String, String, Set<String>> t : transitions) {
             if (t.getTransition().equals(name) && t.getCurrent().equals(state)) {
