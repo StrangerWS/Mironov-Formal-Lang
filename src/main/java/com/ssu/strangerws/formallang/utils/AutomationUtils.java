@@ -54,6 +54,7 @@ public class AutomationUtils {
         int localCnt = 0;
 
         if (!automation.getFileName().equals("generated")) automation.init();
+        else automation.setState(automation.getStartStates());
 
         for (int i = k; i < expression.length(); i++) {
             String signal = null;
@@ -127,7 +128,7 @@ public class AutomationUtils {
             }
 
             if (falseCnt == automations.length) {
-                System.out.println("No automations to read the symbol: " + expression.charAt(i));
+                System.out.println("No automations to read the symbol: " + expression.charAt(i) + " at position " + i);
                 return lexemes;
             }
 

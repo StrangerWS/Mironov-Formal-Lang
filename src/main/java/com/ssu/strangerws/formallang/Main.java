@@ -22,8 +22,8 @@ public class Main {
         Automation keyWord =        new DFA("src\\main\\resources\\txt\\keyWord.txt",       7, Type.keyWord);
 
         try {
-            //System.out.println(AutomationUtils.analyzeCode(new Automation[]{identifier, real, integer, closeBracket, openBracket, space, keyWord},
-                                                                            //AutomationUtils.readFile("src\\main\\resources\\code.txt")));
+            System.out.println(AutomationUtils.analyzeCode(new Automation[]{identifier, real, integer, closeBracket, openBracket, space, keyWord},
+                                                                            AutomationUtils.readFile("src\\main\\resources\\code.txt")));
             System.out.println(AutomationUtils.analyzeCode( Parser.createAnalyzer(Parser.readLexemes("src\\main\\resources\\automations.txt")),
                                                             AutomationUtils.readFile("src\\main\\resources\\code.txt")));
         } catch (IOException e) {

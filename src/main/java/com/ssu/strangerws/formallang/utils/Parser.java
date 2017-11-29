@@ -120,7 +120,6 @@ public class Parser {
                 }
                 index++;
             } else if (symbol == ')') {
-                ;
                 index++;
             } else {
                 concat.add(AutomationGenerator.createSingle(String.valueOf(symbol)));

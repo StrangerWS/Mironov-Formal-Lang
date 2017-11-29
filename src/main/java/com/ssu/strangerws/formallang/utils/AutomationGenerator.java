@@ -89,12 +89,6 @@ public class AutomationGenerator {
 
         List<Transition<String, String, Set<String>>> transitions = AutomationRenamer.renameTransitionsForPair(a1, a2);
 
-        Set<String> startStates = new HashSet<>();
-        startStates.addAll(a1.getStartStates());
-
-        List<String> endStates = new ArrayList<>();
-        endStates.addAll(a2.getEndStates());
-
         //cycle by a1.endStates
         //cycle by a2.startStates
         //get a2.startState and a2.transition
@@ -105,11 +99,17 @@ public class AutomationGenerator {
                 for (String a2transitions : a2.getAlphabet()) {
                     if (a2.getTransitionByNameAndState(a2transitions, a2State) != null) {
                         transitions.remove(a2.getTransitionByNameAndState(a2transitions, a2State));
-                        transitions.add(new Transition<String, String, Set<String>>(a2transitions, a1State, a2.getTransitionByNameAndState(a2transitions, a2State).getNext()));
+                        transitions.add(new Transition<>(a2transitions, a1State, a2.getTransitionByNameAndState(a2transitions, a2State).getNext()));
                     }
                 }
             }
         }
+
+        Set<String> startStates = new HashSet<>();
+        startStates.addAll(a1.getStartStates());
+
+        List<String> endStates = new ArrayList<>();
+        endStates.addAll(a2.getEndStates());
 
         for (String state : a2.getEndStates()) {
             if (a2.getStartStates().contains(state)) {
@@ -140,8 +140,8 @@ public class AutomationGenerator {
         automation.setAlphabet(a1.getAlphabet());
         if(a1.getMasks() != null) automation.setMasks(a1.getMasks());
 
-        for (String startState : a1.getStartStates()) {
-            for (String endState : a1.getEndStates()) {
+        for (String endState : a1.getEndStates()) {
+            for (String startState : a1.getStartStates()) {
                 for (String transition : a1.getAlphabet()) {
                     if (a1.getTransitionByNameAndState(transition, startState) != null) {
                         automation.getTransitions().add(new Transition<>(transition, endState, a1.getTransitionByNameAndState(transition, startState).getNext()));
