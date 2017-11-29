@@ -33,7 +33,6 @@ public abstract class Automation<T> {
     public Automation(String fileName, int priority, String name) {
         this.fileName = fileName;
         this.priority = priority;
-        this.masks = new String[0];
         this.name = name;
     }
     public Automation(String fileName, int priority, String[] masks, String name) {

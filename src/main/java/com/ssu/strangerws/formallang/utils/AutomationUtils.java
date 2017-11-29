@@ -3,9 +3,6 @@ package com.ssu.strangerws.formallang.utils;
 import com.ssu.strangerws.formallang.automation.Automation;
 import javafx.util.Pair;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -26,7 +23,7 @@ public class AutomationUtils {
     }
 
     public static boolean testAutomation(Automation automation, String expression) throws IOException {
-        automation.init();
+        if (!automation.getFileName().equals("generated")) automation.init();
 
         for (int i = 0; i < expression.length(); i++) {
             String signal = null;
@@ -56,7 +53,7 @@ public class AutomationUtils {
         int globalCnt = 0;
         int localCnt = 0;
 
-        automation.init();
+        if (!automation.getFileName().equals("generated")) automation.init();
 
         for (int i = k; i < expression.length(); i++) {
             String signal = null;
@@ -129,14 +126,14 @@ public class AutomationUtils {
                 }
             }
 
-            if (falseCnt == 7) {
+            if (falseCnt == automations.length) {
                 System.out.println("No automations to read the symbol: " + expression.charAt(i));
                 return lexemes;
             }
 
             falseCnt = 0;
 
-            lexemes.add(new Pair<String, String>(automations[automationIndex].getName(), expression.substring(i, i + maxLength)));
+            lexemes.add(new Pair<>(automations[automationIndex].getName(), expression.substring(i, i + maxLength)));
             i += maxLength;
 
             maxLength = 0;

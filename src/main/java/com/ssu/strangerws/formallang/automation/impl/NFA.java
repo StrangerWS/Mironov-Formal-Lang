@@ -52,7 +52,6 @@ public class NFA extends Automation<Set<String>> {
 
     @Override
     public boolean checkEnd() {
-        System.out.println(state.toString());
         for (String nextState : state) {
             if (endStates.contains(nextState)) return true;
         }
