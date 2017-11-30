@@ -48,7 +48,7 @@ public class AutomationUtils {
         return automation.checkEnd();
     }
 
-    public static Pair<Boolean, Integer> findMaxLengthExpression(Automation automation, String expression, int k) throws IOException {
+    private static Pair<Boolean, Integer> findMaxLengthExpression(Automation automation, String expression, int k) throws IOException {
         boolean over = false;
         int globalCnt = 0;
         int localCnt = 0;

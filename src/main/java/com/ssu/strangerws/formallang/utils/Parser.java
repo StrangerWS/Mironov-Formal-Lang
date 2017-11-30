@@ -140,7 +140,7 @@ public class Parser {
         int index = 0;
         NFA result;
         if (automations.isEmpty()) {
-            result = AutomationGenerator.createSingle("\\?");
+            result = AutomationGenerator.createEmpty();
             result.setMasks(new String[]{"\\?"});
             return result;
         } else if (automations.size() == 1) {
@@ -164,7 +164,7 @@ public class Parser {
     private static NFA createUnion(List<NFA> automations) {
         NFA result;
         if (automations.isEmpty()) {
-            result = AutomationGenerator.createSingle("\\?");
+            result = AutomationGenerator.createEmpty();
             result.setMasks(new String[]{"\\?"});
             return result;
         } else if (automations.size() == 1) {
