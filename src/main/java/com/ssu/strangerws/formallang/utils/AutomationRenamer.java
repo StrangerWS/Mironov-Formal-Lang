@@ -26,7 +26,12 @@ public class AutomationRenamer {
         }
 
         if (!names2.isEmpty()) {
-            maxElem = (Collections.max(names1) > Collections.max(names2)) ? Collections.max(names1) : Collections.max(names2);
+            if (!names1.isEmpty()) {
+                maxElem = (Collections.max(names1) > Collections.max(names2)) ? Collections.max(names1) : Collections.max(names2);
+            } else {
+                maxElem = Collections.max(names2);
+            }
+
 
             names2.retainAll(names1);
 

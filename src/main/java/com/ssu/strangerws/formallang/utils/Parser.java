@@ -50,7 +50,7 @@ public class Parser {
                         concat.add(AutomationGenerator.createSingle("|"));
                         break;
                     case '?':
-                        concat.add(AutomationGenerator.createSingle("\\?"));
+                        concat.add(AutomationGenerator.createEmpty());
                         masks.add("\\?");
                         break;
                     case '*':
